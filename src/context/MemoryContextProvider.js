@@ -1,18 +1,38 @@
-import React, { useState } from "react";
-import MemoryContext from "./MemoryContext";
+import { useEffect, useState, createContext, useContext } from "react";
 
-function MemoryContextProvider({ children }) {
+import axios from "axios";
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
+const MemoryContext = createContext();
+
+export const MemoryContextProvider = ({ children }) => {
   const [memories, setMemories] = useState([]);
 
-  const addMemory = (memory) => {
-    setMemories([...memories, memory]);
+  const fetchMemories = async () => {
+    try {
+      const response = await axios.get(
+        `${REACT_APP_SERVER_URL}/api/v1/memories/`
+      );
+      console.log(response);
+
+      setMemories(response.data.data.memories);
+      console.log(response.data.data.memories);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  useEffect(() => {
+    fetchMemories();
+  }, []);
+
   return (
-    <MemoryContext.Provider value={{ memories, addMemory }}>
+    <MemoryContext.Provider value={{ memories }}>
       {children}
     </MemoryContext.Provider>
   );
-}
+};
 
-export default MemoryContextProvider;
+export const useMemory = () => {
+  return useContext(MemoryContext);
+};

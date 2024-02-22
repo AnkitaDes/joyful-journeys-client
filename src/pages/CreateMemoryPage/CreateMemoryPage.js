@@ -1,24 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./AddMemoryPage.scss";
 import { useNavigate } from "react-router-dom";
 import BackArrow from "../../assets/images/icons/arrow_back-24px.svg";
+import MemoryContext from "../../context/MemoryContext";
 
 function AddMemoryPage() {
   const navigate = useNavigate();
+  const { addMemory } = useContext(MemoryContext);
 
   const [memory, setMemory] = useState({
     creator: "",
     title: "",
     description: "",
     tags: "",
+    image: null,
   });
 
   const handleInputChange = (e) => {
+    if (e.target.name === "memory_image") {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setMemory({ ...memory, image: reader.result });
+      };
+      reader.readAsDataURL(file);
+      return;
+    }
     setMemory({ ...memory, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    addMemory(memory);
 
     alert("Your upload was successful!");
     navigate("/");
@@ -32,6 +46,7 @@ function AddMemoryPage() {
       title: "",
       message: "",
       tags: "",
+      image: null,
     });
   };
 
@@ -58,9 +73,6 @@ function AddMemoryPage() {
             value={memory.name}
             onChange={handleInputChange}
           />
-        </div>
-        <div className="add-memory__details-image">
-          <img src={memory.image} alt="Memory" className="add-memory__image" />
         </div>
         <div className="add-memory__details">
           <label className="add-memory__label">Title</label>
@@ -97,12 +109,28 @@ function AddMemoryPage() {
             onChange={handleInputChange}
           />
         </div>
+
+        <div className="add-memory__details">
+          <label className="add-memory__label">Image</label>
+          <input
+            className="add-memory__input"
+            type="file"
+            id="memory_image"
+            name="image"
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className="add-memory__image-preview">
+          {memory.image && <img src={memory.image} alt="Memory" />}
+        </div>
       </form>
       <div className="add-memory__buttons">
         <button className="add-memory__button-cancel" onClick={handleCancel}>
           Cancel
         </button>
         <button
+          type="submit"
           className="add-memory__button-add-memory"
           onClick={handleSubmit}
         >
