@@ -1,0 +1,78 @@
+.create-memory-modal {
+  &__title {
+    font-size: 1.5rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+
+    &__label {
+      margin-bottom: 1rem;
+    }
+
+    &__textarea,
+    &__input {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    &__error {
+      color: red;
+      margin-bottom: 1rem;
+    }
+
+    &__preview {
+      width: auto;
+      max-height: 200px;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    preview-wrap {
+      width: 80%;
+      margin: 0 auto;
+      height: 20rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    &__submit-btn {
+      padding: 0.5rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  &__close-btn {
+    padding: 0.5rem;
+    background-color: #ccc;
+    color: #000;
+    border: none;
+    cursor: pointer;
+  }
+
+  @media (min-width: 20rem) {
+    &__form {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    &__form {
+      width: 70%;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    &__form {
+      width: 50%;
+    }
+  }
+}
+.ReactModal__Content {
+  overflow-y: auto;
+}

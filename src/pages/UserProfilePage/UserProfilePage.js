@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "../../context/UserContextProvider";
 import axios from "axios";
 import MemoryCard from "../../components/MemoryCard/MemoryCard";
+import CreateMemoryModal from "../../components/CreateMemoryModal/CreatMemoryModal";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const UserProfile = () => {
   const [memories, setMemories] = useState([]);
-  const [newMemoryAdded, setNewMemoryAdded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [newMemoryAdded, setNewMemoryAdded] = useState(false);
 
   const userId = localStorage.getItem("userId");
   console.log(userId);
@@ -20,25 +22,44 @@ const UserProfile = () => {
 
       console.log(response.data.data.memories);
 
-      if (response.data.data.success) {
-        setMemories(response.data.data.memories);
-      } else {
-        console.error("Server response indicates an error:", response);
-      }
+      setMemories(response.data.data.memories);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleMemoryCreated = () => {
+    fetchUserMemories(); // Refresh the memories when a new one is created
+    setIsModalOpen(false); // Close the modal
   };
 
   useEffect(() => {
     fetchUserMemories();
   }, [userId]);
 
+  // useEffect(() => {
+  //   fetchUserMemories();
+  // }, []);
+
   return (
     <div>
       <h1>User Profile</h1>
+      <button onClick={handleOpenModal}>Create Memory</button>
+      <CreateMemoryModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onMemoryCreated={handleMemoryCreated}
+      />
       {memories.map((memory) => (
-        <MemoryCard key={memory.id} memory={memory} /> // Use the MemoryCard component to render each memory
+        <MemoryCard key={memory.id} memory={memory} />
       ))}
     </div>
   );

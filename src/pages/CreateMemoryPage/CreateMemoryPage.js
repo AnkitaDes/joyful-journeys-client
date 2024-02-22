@@ -94,3 +94,58 @@ const CreateMemoryPage = () => {
 };
 
 export default CreateMemoryPage;
+
+// import { useState } from "react";
+// import Modal from "react-modal";
+
+// Modal.setAppElement("#root");
+
+// const CreateMemoryModal = ({ isOpen, onClose, onMemoryCreated }) => {
+//   const [description, setDescription] = useState("");
+//   const [image, setImage] = useState(null);
+
+//   const createMemory = async (event) => {
+//     event.preventDefault();
+
+//     // Create the memory here...
+//     // You'll likely want to make an API call here
+
+//     // After successfully creating the memory, call onMemoryCreated
+//     onMemoryCreated();
+
+//     // Close the modal
+//     onClose();
+//   };
+
+//   return (
+//     <Modal
+//       isOpen={isOpen}
+//       onRequestClose={onClose}
+//       contentLabel="Create Memory Modal"
+//     >
+//       <h1>Create Memory</h1>
+//       <form onSubmit={createMemory}>
+//         <label>
+//           Description:
+//           <textarea
+//             value={description}
+//             onChange={(e) => setDescription(e.target.value)}
+//             required
+//           />
+//         </label>
+//         <label>
+//           Image:
+//           <input
+//             type="file"
+//             onChange={(e) => setImage(e.target.files[0])}
+//             required
+//           />
+//         </label>
+//         <button type="submit">Create Memory</button>
+//       </form>
+//       <button onClick={onClose}>Close</button>
+//     </Modal>
+//   );
+// };
+
+// export default CreateMemoryModal;
