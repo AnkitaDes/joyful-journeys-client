@@ -5,7 +5,7 @@ import { MemoryContextProvider } from "./context/MemoryContextProvider";
 import LoginPage from "./pages/LoginPage/LoginPage";
 // import RegisterPage from "./RegisterPage";
 import HomePage from "./pages/HomePage/HomePage";
-// import CreateMemoryPage from "./CreateMemoryPage";
+import CreateMemoryPage from "./pages/CreateMemoryPage/CreateMemoryPage";
 // import EditMemoryPage from "./EditMemoryPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 // import NotFoundPage from "./NotFoundPage";
@@ -21,8 +21,8 @@ const App = () => {
               {/* <Route path="/" exact element={<RegisterPage/>} /> */}
               <Route path="/login" element={<LoginPage />} />
               <Route path="/" element={<HomePage />} />
-              {/* <PrivateRoute path="/create-memory" element={<CreateMemoryPage/>} />
-            <PrivateRoute path="/edit-memory/:id" element={<EditMemoryPage/>} /> */}
+              <Route path="/create-memory" element={<CreateMemoryPage />} />
+              {/* <PrivateRoute path="/edit-memory/:id" element={<EditMemoryPage/>} />  */}
               <Route path="/profile" element={<UserProfilePage />} />
               {/* <Route element={<NotFoundPage/>} />  */}
             </Routes>

@@ -6,9 +6,11 @@ import MemoryCard from "../../components/MemoryCard/MemoryCard";
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const UserProfile = () => {
-  const { userId } = useUser();
-  console.log(userId);
   const [memories, setMemories] = useState([]);
+  const [newMemoryAdded, setNewMemoryAdded] = useState(false);
+
+  const userId = localStorage.getItem("userId");
+  console.log(userId);
 
   const fetchUserMemories = async () => {
     try {
@@ -17,7 +19,12 @@ const UserProfile = () => {
       );
 
       console.log(response.data.data.memories);
-      setMemories(response.data.data.memories);
+
+      if (response.data.data.success) {
+        setMemories(response.data.data.memories);
+      } else {
+        console.error("Server response indicates an error:", response);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -25,7 +32,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     fetchUserMemories();
-  }, []);
+  }, [userId]);
 
   return (
     <div>

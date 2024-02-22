@@ -19,8 +19,11 @@ export const UserContextProvider = ({ children }) => {
       if (response.data.data && response.data.data.user) {
         console.log(response.data.data.user);
         setUser(response.data.data.user);
+
         setUserId(response.data.data.user.id);
+        localStorage.setItem("userId", response.data.data.user.id);
         console.log(response.data.data.user.id);
+        //console.log(userId);
       } else {
         console.error(
           "Server response does not contain a user object:",

@@ -1,144 +1,96 @@
-import React, { useState, useContext } from "react";
-import "./AddMemoryPage.scss";
-import { useNavigate } from "react-router-dom";
-import BackArrow from "../../assets/images/icons/arrow_back-24px.svg";
-import MemoryContext from "../../context/MemoryContext";
+import { useState } from "react";
+import axios from "axios";
+// import { useHistory } from "react-router-dom";
+import { useDropzone } from "react-dropzone";
 
-function AddMemoryPage() {
-  const navigate = useNavigate();
-  const { addMemory } = useContext(MemoryContext);
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-  const [memory, setMemory] = useState({
-    creator: "",
-    title: "",
-    description: "",
-    tags: "",
-    image: null,
+const CreateMemoryPage = () => {
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null);
+  const [errors, setErrors] = useState({});
+  // const history = useHistory();
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      setImage(acceptedFiles[0]);
+    },
   });
 
-  const handleInputChange = (e) => {
-    if (e.target.name === "memory_image") {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setMemory({ ...memory, image: reader.result });
-      };
-      reader.readAsDataURL(file);
+  const validateForm = () => {
+    let formErrors = {};
+
+    if (!description) formErrors.description = "Description is required";
+    if (!image) formErrors.image = "Image is required";
+
+    return formErrors;
+  };
+
+  const createMemory = async (event) => {
+    event.preventDefault();
+
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
       return;
     }
-    setMemory({ ...memory, [e.target.name]: e.target.value });
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const userId = localStorage.getItem("userId");
 
-    addMemory(memory);
+    const formData = new FormData();
+    formData.append("description", description);
+    formData.append("image", image);
+    formData.append("userId", userId);
 
-    alert("Your upload was successful!");
-    navigate("/");
-    // Here you can handle the submit logic (e.g., send a POST request to your server)
-    console.log(memory);
-  };
+    try {
+      const response = await axios.post(
+        `${REACT_APP_SERVER_URL}/api/v1/create-memory`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-  const handleCancel = () => {
-    setMemory({
-      creator: "",
-      title: "",
-      message: "",
-      tags: "",
-      image: null,
-    });
+      if (response.data.success) {
+        // Clear the form
+        setDescription("");
+        setImage(null);
+        setErrors({});
+
+        // // Navigate to the UserProfilePage
+        // history.push("/user-profile");
+      } else {
+        console.error("Server response indicates an error:", response);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
-    <section className="add-memory">
-      <div className="add-memory__title-container">
-        <img
-          src={BackArrow}
-          className="back-arrow"
-          alt="Back Arrow"
-          onClick={handleCancel}
-        />
-        <h1 className="add-memory__title">Create New Memory</h1>
-      </div>
-      <form className="add-memory__form">
-        <div className="add-memory__details">
-          <label className="add-memory__label">Creator Name</label>
-          <input
-            placeholder="Creator Name"
-            className="add-memory__input"
-            type="text"
-            id="memory_name"
-            name="memory_name"
-            value={memory.name}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="add-memory__details">
-          <label className="add-memory__label">Title</label>
-          <input
-            placeholder="Title"
-            className="add-memory__input"
-            type="text"
-            id="memory_title"
-            name="memory_title"
-            value={memory.title}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="add-memory__label">Description</label>
+    <div>
+      <h1>Create Memory</h1>
+      <form onSubmit={createMemory}>
+        <label>
+          Description:
           <textarea
-            placeholder="Description"
-            className="add-memory__input add-memory__input--textarea"
-            id="memory_description"
-            name="memory_description"
-            value={memory.description}
-            onChange={handleInputChange}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
+          {errors.description && <p>{errors.description}</p>}
+        </label>
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          <p>Drag 'n' drop some files here, or click to select files</p>
         </div>
-        <div className="add-memory__details">
-          <label className="add-memory__label">Tags</label>
-          <input
-            placeholder="Tags"
-            className="add-memory__input"
-            type="text"
-            id="memory_tags"
-            name="memory_tags"
-            value={memory.tags}
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div className="add-memory__details">
-          <label className="add-memory__label">Image</label>
-          <input
-            className="add-memory__input"
-            type="file"
-            id="memory_image"
-            name="image"
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div className="add-memory__image-preview">
-          {memory.image && <img src={memory.image} alt="Memory" />}
-        </div>
+        {errors.image && <p>{errors.image}</p>}
+        <button type="submit">Create Memory</button>
       </form>
-      <div className="add-memory__buttons">
-        <button className="add-memory__button-cancel" onClick={handleCancel}>
-          Cancel
-        </button>
-        <button
-          type="submit"
-          className="add-memory__button-add-memory"
-          onClick={handleSubmit}
-        >
-          Add Memory
-        </button>
-      </div>
-    </section>
+    </div>
   );
-}
+};
 
-export default AddMemoryPage;
+export default CreateMemoryPage;
