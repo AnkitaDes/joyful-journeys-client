@@ -3,12 +3,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MemoryCard from "../../components/MemoryCard/MemoryCard";
 import CreateMemoryModal from "../../components/CreateMemoryModal/CreatMemoryModal";
+import UpdateMemoryModal from "../../components/UpdateMemoryModal/UpdateMemoryModal";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const UserProfile = () => {
   const [memories, setMemories] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [selectedMemory, setSelectedMemory] = useState(null);
+
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   // const [newMemoryAdded, setNewMemoryAdded] = useState(false);
 
   const userId = localStorage.getItem("userId");
@@ -28,22 +33,52 @@ const UserProfile = () => {
     }
   };
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+  const handleOpenCreateModal = () => {
+    setIsCreateModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleCloseCreateModal = () => {
+    setIsCreateModalOpen(false);
+  };
+
+  const handleOpenUpdateModal = (memory) => {
+    setSelectedMemory(memory);
+
+    setIsUpdateModalOpen(true);
+  };
+
+  const handleCloseUpdateModal = () => {
+    setIsUpdateModalOpen(false);
   };
 
   const handleMemoryCreated = () => {
     fetchUserMemories(); // Refresh the memories when a new one is created
-    setIsModalOpen(false); // Close the modal
+    setIsCreateModalOpen(false); // Close the modal
+  };
+
+  const handleMemoryUpdated = async (updatedMemory) => {
+    try {
+      const response = await axios.put(
+        `${REACT_APP_SERVER_URL}/api/v1/memories/${selectedMemory.id}`,
+        updatedMemory
+      );
+
+      console.log(response.data.data.memory);
+
+      fetchUserMemories(); // Refresh the memories after one is updated
+      setIsUpdateModalOpen(false); // Close the modal
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
     fetchUserMemories();
   }, [userId]);
+
+  useEffect(() => {
+    console.log(selectedMemory);
+  }, [selectedMemory]);
 
   const deleteMemory = async (id) => {
     try {
@@ -57,17 +92,24 @@ const UserProfile = () => {
   return (
     <div>
       <h1>User Profile</h1>
-      <button onClick={handleOpenModal}>Create Memory</button>
+      <button onClick={handleOpenCreateModal}>Create Memory</button>
       <CreateMemoryModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
+        isOpen={isCreateModalOpen}
+        onClose={handleCloseCreateModal}
         onMemoryCreated={handleMemoryCreated}
+      />
+      <UpdateMemoryModal
+        isOpen={isUpdateModalOpen}
+        onClose={handleCloseUpdateModal}
+        onMemoryUpdated={handleMemoryUpdated}
+        memory={selectedMemory}
       />
       {memories.map((memory) => (
         <MemoryCard
           key={memory.id}
           memory={memory}
           onDelete={deleteMemory}
+          onUpdate={handleOpenUpdateModal}
           userId={userId}
         />
       ))}

@@ -1,0 +1,51 @@
+/* Breakpoints*/
+
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1280px;
+
+$min-mobile-width: 320px;
+$max-desktop-width: 1920px;
+
+/* Font weight */
+$text-regular: 400;
+$text-demi: 500;
+$text-bold: 600;
+
+/* Font type */
+/* Mobile */
+$mobile-header-fontsize: 1.5rem; //24px
+$mobile-header-lineheight: 2rem; //32px
+
+$mobile-title-fontsize: 0.75rem; //12px
+$mobile-title-lineheight: 1.25rem; //20px
+
+$mobile-body-fontsize: 0.8125rem; //13px
+$mobile-body-lineheight: 1.125rem; //18px
+
+$mobile-btn-fontsize: 0.625rem; //10px
+$mobile-btn-lineheight: 1.25rem; //20px
+
+/* Tablet and Desktop */
+$header-fontsize: 2.0625rem; //33px
+$header-lineheight: 2.75rem; //44px
+
+$title-fontsize: 0.75rem; //12px
+$title-lineheight: 1.25rem; //20px
+
+$body-fontsize: 0.875rem; //14px
+$body-lineheight: 1.375rem; //22p
+
+$btn-fontsize: 0.75rem; //12px
+$btn-lineheight: 1.25rem; //20px
+
+/* Color */
+
+$primary-black: #323232;
+$primary-silver: #afafaf;
+$primary-white: #ffffff;
+$primary-green: #008f8c;
+
+$secondary-darkblack: #000000;
+$secondary-mercury: #e1e1e1;
+$secondary-alabaster: #fafafa;
+$secondary-darkgreen: #015958;

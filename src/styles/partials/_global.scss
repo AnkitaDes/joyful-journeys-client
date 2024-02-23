@@ -1,0 +1,16 @@
+@use "./typography" as *;
+@use "./variables" as *;
+@use "./mixins" as *;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Avenir", Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+  min-width: $min-mobile-width;
+  max-width: $max-desktop-width;
+  padding: 0;
+  color: $primary-black;
+}

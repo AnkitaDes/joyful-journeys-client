@@ -97,7 +97,7 @@ const CreateMemoryModal = ({ isOpen, onClose, onMemoryCreated }) => {
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
-      contentLabel="Create Memory Modal"
+      // contentLabel="Create Memory Modal"
       className="create-memory-modal"
     >
       <h1 className="create-memory-modal__title">Create Memory</h1>

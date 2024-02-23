@@ -1,0 +1,61 @@
+@use "./variables" as *;
+
+@mixin tablet-and-desktop {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin mobile-header {
+  font-size: $mobile-header-fontsize;
+  line-height: $mobile-header-lineheight;
+  font-weight: $text-bold;
+}
+
+@mixin mobile-title {
+  font-size: $mobile-title-fontsize;
+  line-height: $mobile-title-lineheight;
+  font-weight: $text-bold;
+}
+
+@mixin mobile-body {
+  font-size: $mobile-body-fontsize;
+  line-height: $mobile-body-lineheight;
+  font-weight: $text-regular;
+}
+
+@mixin mobile-lable-button {
+  font-size: $mobile-btn-fontsize;
+  line-height: $mobile-btn-lineheight;
+  font-weight: $text-bold;
+}
+
+@mixin tabdesk-header {
+  font-size: $header-fontsize;
+  line-height: $header-lineheight;
+  font-weight: $text-bold;
+}
+
+@mixin tabdesk-title {
+  font-size: $title-fontsize;
+  line-height: $title-lineheight;
+  font-weight: $text-bold;
+}
+
+@mixin tabdesk-body {
+  font-size: $body-fontsize;
+  line-height: $body-lineheight;
+  font-weight: $text-regular;
+}
+
+@mixin tabdesk-btn {
+  font-size: $btn-fontsize;
+  line-height: $btn-lineheight;
+  font-weight: $text-bold;
+}
