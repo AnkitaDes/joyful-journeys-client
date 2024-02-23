@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useUser } from "../../context/UserContextProvider";
+// import { useUser } from "../../context/UserContextProvider";
 import axios from "axios";
 import MemoryCard from "../../components/MemoryCard/MemoryCard";
 import CreateMemoryModal from "../../components/CreateMemoryModal/CreatMemoryModal";
@@ -45,9 +45,14 @@ const UserProfile = () => {
     fetchUserMemories();
   }, [userId]);
 
-  // useEffect(() => {
-  //   fetchUserMemories();
-  // }, []);
+  const deleteMemory = async (id) => {
+    try {
+      await axios.delete(`${REACT_APP_SERVER_URL}/api/v1/memories/${id}`);
+      fetchUserMemories(); // Refresh the memories after one is deleted
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div>
@@ -59,7 +64,12 @@ const UserProfile = () => {
         onMemoryCreated={handleMemoryCreated}
       />
       {memories.map((memory) => (
-        <MemoryCard key={memory.id} memory={memory} />
+        <MemoryCard
+          key={memory.id}
+          memory={memory}
+          onDelete={deleteMemory}
+          userId={userId}
+        />
       ))}
     </div>
   );
