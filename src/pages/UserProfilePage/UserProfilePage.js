@@ -4,6 +4,7 @@ import axios from "axios";
 import MemoryCard from "../../components/MemoryCard/MemoryCard";
 import CreateMemoryModal from "../../components/CreateMemoryModal/CreatMemoryModal";
 import UpdateMemoryModal from "../../components/UpdateMemoryModal/UpdateMemoryModal";
+import { useMemory } from "../../context/MemoryContextProvider";
 import "./UserProfilePage.scss";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -101,9 +102,16 @@ const UserProfile = () => {
   return (
     <main className="user-profile">
       {/* <h1>User Profile</h1> */}
-
-      <button onClick={handleOpenCreateModal}>Create Memory</button>
+      <div className="user-profile__create-memory-btn-wrap">
+        <button
+          className="user-profile__create-memory-btn"
+          onClick={handleOpenCreateModal}
+        >
+          Create a Memory
+        </button>
+      </div>
       <CreateMemoryModal
+        className="user-profile__create-memory-modal"
         isOpen={isCreateModalOpen}
         onClose={handleCloseCreateModal}
         onMemoryCreated={handleMemoryCreated}
@@ -117,6 +125,7 @@ const UserProfile = () => {
       <div className="user-profile__card-wrap">
         {memories.map((memory) => (
           <MemoryCard
+            className="user-profile__card"
             key={memory.id}
             memory={memory}
             onDelete={deleteMemory}

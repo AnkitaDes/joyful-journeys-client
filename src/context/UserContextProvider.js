@@ -35,6 +35,13 @@ export const UserContextProvider = ({ children }) => {
     }
   };
 
+  const logOut = () => {
+    setUser(null);
+    setUserId(null);
+    localStorage.removeItem("userId");
+    // Redirect to login page
+  };
+
   // // Call this function when the user registers
   // const register = async (name, email, password) => {
   //   try {
@@ -55,7 +62,7 @@ export const UserContextProvider = ({ children }) => {
   // };
 
   return (
-    <UserContext.Provider value={{ user, userId, logIn }}>
+    <UserContext.Provider value={{ user, userId, logIn, logOut }}>
       {children}
     </UserContext.Provider>
   );

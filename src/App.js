@@ -9,6 +9,7 @@ import CreateMemoryPage from "./pages/CreateMemoryPage/CreateMemoryPage";
 // import EditMemoryPage from "./EditMemoryPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 // import NotFoundPage from "./NotFoundPage";
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
               <Route path="/profile" element={<UserProfilePage />} />
               {/* <Route element={<NotFoundPage/>} />  */}
             </Routes>
+            <Footer />
           </BrowserRouter>
         </MemoryContextProvider>
       </UserContextProvider>

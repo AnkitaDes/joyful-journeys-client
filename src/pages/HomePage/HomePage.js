@@ -16,19 +16,28 @@ const HomePage = () => {
   };
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <button onClick={() => setIsModalOpen(true)}>Create Memory</button>
+    <main className="home">
+      <div className="home__create-memory-btn-wrap">
+        <button
+          className="user-profile__create-memory-btn"
+          onClick={() => setIsModalOpen(true)}
+        >
+          Create Memory
+        </button>
+      </div>
       <CreateMemoryModal
+        className="home__create-memory-modal"
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onMemoryCreated={handleMemoryCreated}
       />
-      {memories &&
-        memories.map((memory) => (
-          <MemoryCard key={memory.id} memory={memory} />
-        ))}
-    </div>
+      <div className="user-profile__card-wrap">
+        {memories &&
+          memories.map((memory) => (
+            <MemoryCard key={memory.id} memory={memory} />
+          ))}
+      </div>
+    </main>
   );
 };
 

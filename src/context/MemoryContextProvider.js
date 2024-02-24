@@ -7,6 +7,7 @@ const MemoryContext = createContext();
 
 export const MemoryContextProvider = ({ children }) => {
   const [memories, setMemories] = useState([]);
+  // const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const fetchMemories = async () => {
     try {
@@ -22,12 +23,24 @@ export const MemoryContextProvider = ({ children }) => {
     }
   };
 
+  // const handleOpenCreateModal = () => {
+  //   setIsCreateModalOpen(true);
+  // };
+
+  // const handleCloseCreateModal = () => {
+  //   setIsCreateModalOpen(false);
+  // };
+
   useEffect(() => {
     fetchMemories();
   }, []);
 
   return (
-    <MemoryContext.Provider value={{ memories }}>
+    <MemoryContext.Provider
+      value={{
+        memories,
+      }}
+    >
       {children}
     </MemoryContext.Provider>
   );

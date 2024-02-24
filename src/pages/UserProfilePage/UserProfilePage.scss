@@ -4,20 +4,61 @@
 @use "../../styles/partials/typography" as *;
 
 .user-profile {
-  &__card-wrap {
+  &__create-memory-btn-wrap {
+    display: flex;
+    justify-content: center;
+    // margin-left: 2rem;
+    padding: 2rem;
+
     @include tablet-and-desktop {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
       width: 100%;
-      // height: auto;
-      margin: 0 5rem;
+      justify-content: center;
     }
 
     @include desktop {
       width: 100%;
-      // height: auto;
-      margin: 0 8rem;
+      justify-content: center;
+    }
+  }
+
+  &__create-memory-btn {
+    background-color: $primary-black;
+    color: #ffffff;
+    padding: 0.625rem 1.25rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    width: 80%;
+
+    @include tablet-and-desktop {
+      width: 40%;
+      height: 2.75rem;
+      justify-content: center;
+    }
+
+    @include desktop {
+      width: 30%;
+    }
+
+    &:hover {
+      background-color: $secondary-darkblack;
+    }
+  }
+
+  &__card-wrap {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+
+    @include tablet-and-desktop {
+      width: 100%;
+      justify-content: center;
+    }
+
+    @include desktop {
+      width: 98%;
+      justify-content: center;
     }
   }
 }

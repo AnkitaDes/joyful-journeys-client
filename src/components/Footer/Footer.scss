@@ -1,0 +1,24 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary-black;
+  color: #ffffff;
+  padding: 1rem;
+  width: 100%;
+
+  @include tablet-and-desktop {
+    width: 100%;
+    justify-content: center;
+  }
+
+  @include desktop {
+    width: 100%;
+    justify-content: center;
+  }
+}

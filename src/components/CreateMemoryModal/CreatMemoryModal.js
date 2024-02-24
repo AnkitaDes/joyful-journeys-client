@@ -102,53 +102,55 @@ const CreateMemoryModal = ({ isOpen, onClose, onMemoryCreated }) => {
       className="create-memory-modal"
       // overlayClassName="create-memory-modal-overlay"
     >
-      <h1 className="create-memory-modal__title">Create Memory</h1>
+      <div className="create-memory-modal__wrap">
+        <h1 className="create-memory-modal__title">Create Memory</h1>
 
-      <form onSubmit={createMemory} className="create-memory-modal__form">
-        <label className="create-memory-modal__label">
-          Description:
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-            className="create-memory-modal__textarea"
-          />
-        </label>
-        {errors.description && (
-          <p className="create-memory-modal__error">{errors.description}</p>
-        )}
-        <label className="create-memory-modal__label">
-          Image:
-          <input
-            type="file"
-            onChange={handleImageChange}
-            required
-            className="create-memory-modal__input"
-          />
-        </label>
-        {errors.image && (
-          <p className="create-memory-modal__error">{errors.image}</p>
-        )}
-        <div className="create-memory-modal__preview-wrap">
-          {imagePreviewUrl && (
-            <img
-              src={imagePreviewUrl}
-              alt="Preview"
-              className="create-memory-modal__preview"
+        <form onSubmit={createMemory} className="create-memory-modal__form">
+          <label className="create-memory-modal__label">
+            Description:
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+              className="create-memory-modal__textarea"
             />
+          </label>
+          {errors.description && (
+            <p className="create-memory-modal__error">{errors.description}</p>
           )}
-        </div>
-        <button
-          onClick={createMemory}
-          type="submit"
-          className="create-memory-modal__submit-btn"
-        >
-          Create Memory
+          <label className="create-memory-modal__label">
+            Image:
+            <input
+              type="file"
+              onChange={handleImageChange}
+              required
+              className="create-memory-modal__input"
+            />
+          </label>
+          {errors.image && (
+            <p className="create-memory-modal__error">{errors.image}</p>
+          )}
+          <div className="create-memory-modal__preview-wrap">
+            {imagePreviewUrl && (
+              <img
+                src={imagePreviewUrl}
+                alt="Preview"
+                className="create-memory-modal__preview"
+              />
+            )}
+          </div>
+          <button
+            onClick={createMemory}
+            type="submit"
+            className="create-memory-modal__submit-btn"
+          >
+            Create Memory
+          </button>
+        </form>
+        <button onClick={onClose} className="create-memory-modal__close-btn">
+          Close
         </button>
-      </form>
-      <button onClick={onClose} className="create-memory-modal__close-btn">
-        Close
-      </button>
+      </div>
     </Modal>
   );
 };
