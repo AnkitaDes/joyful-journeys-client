@@ -4,17 +4,24 @@ import "./Header.scss";
 const Header = () => {
   return (
     <header className="header">
-      <h2 className="header__title">joyfuljourneys</h2>
       <nav className="header__nav">
+        <Link className="header__nav-item-link" to="/">
+          <p className="header__title">joyfuljourneys</p>
+        </Link>
+
         <ul className="header__nav-list">
           <li className="header__nav-item">
-            <Link to="/">Home</Link>
+            <Link className="header__nav-item-link" to="/">
+              Home
+            </Link>
           </li>
-          <li className="header__nav-item">
+          {/* <li className="header__nav-item">
             <Link to="/create-memory">Create Memory</Link>
-          </li>
+          </li> */}
           <li className="header__nav-item">
-            <Link to="/profile">Profile</Link>
+            <Link className="header__nav-item-link" to="/profile">
+              Profile
+            </Link>
           </li>
         </ul>
       </nav>

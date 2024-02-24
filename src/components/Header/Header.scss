@@ -1,0 +1,96 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+
+.header {
+  width: 100%;
+  height: 100%;
+  background-color: $primary-black;
+
+  &__title {
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+    @include tablet-and-desktop {
+      padding-bottom: 0.7rem;
+      padding-top: 0.5rem;
+    }
+
+    @include desktop {
+      padding-bottom: 1rem;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    @include tablet-and-desktop {
+      flex-direction: row;
+      padding: 1.25rem 0 0 3.125rem;
+    }
+
+    @include desktop {
+      padding: 1.5rem 0 0 4.5rem;
+    }
+  }
+
+  &__nav-list {
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    @include tablet-and-desktop {
+      padding-left: 5rem;
+    }
+  }
+
+  &__nav-item-link {
+    text-decoration: none;
+    color: $primary-white;
+  }
+
+  &__nav-item {
+    list-style-type: none;
+    width: 50%;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    @include mobile-body;
+    color: $primary-white;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0.25rem;
+      background-color: transparent;
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      &::after {
+        background-color: $primary-white;
+      }
+    }
+
+    @include tablet-and-desktop {
+      width: auto;
+      margin-right: 3rem;
+      padding-bottom: 1.5rem;
+      @include tabdesk-body;
+      color: $primary-white;
+    }
+
+    @include desktop {
+      padding-bottom: 1.5rem;
+    }
+  }
+}

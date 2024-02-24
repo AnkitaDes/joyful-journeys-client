@@ -82,11 +82,19 @@ const UserProfile = () => {
   }, [selectedMemory]);
 
   const deleteMemory = async (id) => {
-    try {
-      await axios.delete(`${REACT_APP_SERVER_URL}/api/v1/memories/${id}`);
-      fetchUserMemories(); // Refresh the memories after one is deleted
-    } catch (error) {
-      console.error(error);
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this memory?"
+    );
+
+    if (!confirmDelete) return;
+
+    if (confirmDelete) {
+      try {
+        await axios.delete(`${REACT_APP_SERVER_URL}/api/v1/memories/${id}`);
+        fetchUserMemories(); // Refresh the memories after one is deleted
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 

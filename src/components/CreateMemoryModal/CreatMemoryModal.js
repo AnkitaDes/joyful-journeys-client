@@ -78,6 +78,7 @@ const CreateMemoryModal = ({ isOpen, onClose, onMemoryCreated }) => {
       // Clear the form
       setDescription("");
       setImage(null);
+      setImagePreviewUrl(null);
       setErrors({});
 
       // After successfully creating the memory, call onMemoryCreated
@@ -99,6 +100,7 @@ const CreateMemoryModal = ({ isOpen, onClose, onMemoryCreated }) => {
       onRequestClose={onClose}
       // contentLabel="Create Memory Modal"
       className="create-memory-modal"
+      // overlayClassName="create-memory-modal-overlay"
     >
       <h1 className="create-memory-modal__title">Create Memory</h1>
 
