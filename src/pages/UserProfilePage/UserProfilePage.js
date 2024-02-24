@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // import { useUser } from "../../context/UserContextProvider";
 import axios from "axios";
 import MemoryCard from "../../components/MemoryCard/MemoryCard";
 import CreateMemoryModal from "../../components/CreateMemoryModal/CreatMemoryModal";
 import UpdateMemoryModal from "../../components/UpdateMemoryModal/UpdateMemoryModal";
+import "./UserProfilePage.scss";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -90,8 +91,9 @@ const UserProfile = () => {
   };
 
   return (
-    <div>
-      <h1>User Profile</h1>
+    <main className="user-profile">
+      {/* <h1>User Profile</h1> */}
+
       <button onClick={handleOpenCreateModal}>Create Memory</button>
       <CreateMemoryModal
         isOpen={isCreateModalOpen}
@@ -104,16 +106,18 @@ const UserProfile = () => {
         onMemoryUpdated={handleMemoryUpdated}
         memory={selectedMemory}
       />
-      {memories.map((memory) => (
-        <MemoryCard
-          key={memory.id}
-          memory={memory}
-          onDelete={deleteMemory}
-          onUpdate={handleOpenUpdateModal}
-          userId={userId}
-        />
-      ))}
-    </div>
+      <div className="user-profile__card-wrap">
+        {memories.map((memory) => (
+          <MemoryCard
+            key={memory.id}
+            memory={memory}
+            onDelete={deleteMemory}
+            onUpdate={handleOpenUpdateModal}
+            userId={userId}
+          />
+        ))}
+      </div>
+    </main>
   );
 };
 

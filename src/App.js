@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import CreateMemoryPage from "./pages/CreateMemoryPage/CreateMemoryPage";
 // import EditMemoryPage from "./EditMemoryPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
+import Header from "./components/Header/Header";
 // import NotFoundPage from "./NotFoundPage";
 
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
       <UserContextProvider>
         <MemoryContextProvider>
           <BrowserRouter>
-            {/* <Header /> */}
+            <Header />
             <Routes>
               {/* <Route path="/" exact element={<RegisterPage/>} /> */}
               <Route path="/login" element={<LoginPage />} />

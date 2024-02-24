@@ -1,0 +1,23 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+
+.user-profile {
+  &__card-wrap {
+    @include tablet-and-desktop {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      // height: auto;
+      margin: 0 5rem;
+    }
+
+    @include desktop {
+      width: 100%;
+      // height: auto;
+      margin: 0 8rem;
+    }
+  }
+}

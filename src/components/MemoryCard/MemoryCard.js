@@ -1,6 +1,8 @@
 import "./MemoryCard.scss";
 import UpdateMemoryModal from "../UpdateMemoryModal/UpdateMemoryModal";
 import { useState } from "react";
+import { formatDistanceToNow } from "date-fns";
+import deleteIcon from "../../assets/icons/delete-button-svgrepo-com.svg";
 
 const MemoryCard = ({ memory, onDelete, onUpdate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,25 +33,51 @@ const MemoryCard = ({ memory, onDelete, onUpdate }) => {
     setIsModalOpen(false); // Close the modal
   };
 
+  function getTimeAgo(timestamp) {
+    const date = new Date(timestamp);
+    return formatDistanceToNow(date, { addSuffix: true });
+  }
+
   return (
-    <div>
-      <h2>Memory Card</h2>
-      <img src={memory.image} alt="baby image" />
-      <p>{memory.description}</p>
-      <p>{memory.created_at}</p>
+    <section className="memory-card">
+      <div className="memory-card__image-wrap">
+        <img
+          className="memory-card__image"
+          src={memory.image}
+          alt="baby image"
+        />
+      </div>
+      <div className="memory-card__description-wrap">
+        <p className="memory-card__description">{memory.description}</p>
+      </div>
+
       {String(memory.users_id) === userId && (
         <>
-          <button onClick={handleOpenModal}>Update</button>
+          {/* <button onClick={handleOpenModal}>Update</button>
           <UpdateMemoryModal
             isOpen={isModalOpen}
             onClose={handleCloseModal}
             onMemoryUpdated={handleMemoryUpdated}
             memory={memory}
-          />
-          <button onClick={handleDelete}>Delete</button>
+          /> */}
+          <div className="memory-card__timeago-deletebtn-wrap">
+            <div className="memory-card__timeago-wrap">
+              <p className="memory-card__timeago">
+                {getTimeAgo(memory.created_at)}
+              </p>
+            </div>
+            <div className="memory-card__delete-btn-wrap">
+              <img
+                onClick={handleDelete}
+                className="memory-card__delete-btn"
+                src={deleteIcon}
+                alt="delete-button"
+              />
+            </div>
+          </div>
         </>
       )}
-    </div>
+    </section>
   );
 };
 
