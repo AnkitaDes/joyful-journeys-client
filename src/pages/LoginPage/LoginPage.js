@@ -42,7 +42,7 @@ const LoginPage = () => {
 
           <div className="login__button-wrap">
             <button className="login__button" type="submit">
-              Log In
+              Login
             </button>
           </div>
         </form>

@@ -7,6 +7,7 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 Modal.setAppElement("#root");
 
 const CreateMemoryModal = ({ isOpen, onClose, onMemoryCreated }) => {
+  console.log(onClose);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState(null);

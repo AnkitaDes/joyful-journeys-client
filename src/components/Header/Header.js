@@ -1,14 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../../context/UserContextProvider";
-import { useNavigate } from "react-router-dom";
 import "./Header.scss";
 
 const Header = () => {
   const { user, logOut } = useUser();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogOut = () => {
     logOut();
+    navigate("/login");
+  };
+
+  const handleLogIn = () => {
     navigate("/login");
   };
 
@@ -19,7 +23,7 @@ const Header = () => {
           <p className="header__title">JoyfulJourneys</p>
         </Link>
 
-        {user && (
+        {user ? (
           <>
             <ul className="header__nav-list">
               <li className="header__nav-item">
@@ -28,24 +32,29 @@ const Header = () => {
                 </Link>
               </li>
 
-              {/* <li className="header__nav-item">
-            <Link to="/create-memory">Create Memory</Link>
-          </li> */}
               <li className="header__nav-item">
                 <Link className="header__nav-item-link" to="/profile">
                   Memories
                 </Link>
               </li>
-              <li className="header__nav-item">
-                <button
-                  className="header__nav-item-link"
-                  onClick={handleLogOut}
-                >
-                  Log Out
-                </button>
-              </li>
+              <div className="header__nav-btn-wrap">
+                <li className="header__nav-item">
+                  <button
+                    className="header__nav-logout-btn"
+                    onClick={handleLogOut}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </div>
             </ul>
           </>
+        ) : (
+          <div className="header__nav-login-btn-wrap">
+            <button className="header__nav-login-btn" onClick={handleLogIn}>
+              Login
+            </button>
+          </div>
         )}
       </nav>
     </header>

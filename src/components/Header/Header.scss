@@ -9,11 +9,11 @@
   background-color: $primary-black;
 
   &__title {
-    font-size: 24px;
+    font-size: 1.75rem;
     color: #fff;
     text-align: center;
     margin: 0;
-    padding-top: 1rem;
+    //padding-top: 1rem;
     display: flex;
     justify-content: center;
     @include tablet-and-desktop {
@@ -30,9 +30,10 @@
     display: flex;
     flex-direction: column;
     padding-top: 1rem;
+    padding-bottom: 1rem;
     @include tablet-and-desktop {
       flex-direction: row;
-      padding: 1.25rem 0 0 3.125rem;
+      padding: 1.3rem 0 0 3.125rem;
     }
 
     @include desktop {
@@ -43,6 +44,7 @@
   &__nav-list {
     width: 100%;
     display: flex;
+    justify-content: space-around;
     margin: 0;
     padding: 0;
 
@@ -58,39 +60,122 @@
 
   &__nav-item {
     list-style-type: none;
-    width: 50%;
+
     text-align: center;
     padding: 1rem 0;
     position: relative;
     @include mobile-body;
     color: $primary-white;
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 0.25rem;
-      background-color: transparent;
-      transition: all 0.3s ease;
-    }
 
     &:hover {
-      &::after {
-        background-color: $primary-white;
-      }
+      transform: scale(1.1);
+      font-weight: bold;
     }
 
     @include tablet-and-desktop {
       width: auto;
       margin-right: 3rem;
-      padding-bottom: 1.5rem;
+      //padding-bottom: 1.5rem;
       @include tabdesk-body;
       color: $primary-white;
     }
 
     @include desktop {
       padding-bottom: 1.5rem;
+      font-size: 1.125rem;
+    }
+  }
+
+  &__nav-logout-btn-wrap {
+    // display: flex;
+    // justify-content: flex-end;
+    width: 100%;
+    // margin-top: 1rem;
+  }
+
+  &__nav-logout-btn {
+    background-color: $primary-black;
+    color: $primary-white;
+    font-family: "Avenir";
+    border: none;
+    padding: 0.3rem;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 0.25rem;
+    display: block;
+    text-align: center;
+    margin-top: -0.4rem;
+    // font-size: 1.325rem;
+
+    &:hover {
+      transform: scale(1.1);
+      font-weight: bold;
+    }
+
+    @include tablet-and-desktop {
+      height: 2.75rem;
+      justify-content: center;
+      margin-top: -0.7rem;
+      // @include tabdesk-body;
+    }
+
+    @include desktop {
+      font-size: 1.125rem;
+    }
+  }
+
+  &__nav-login-btn-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+
+    @include tablet-and-desktop {
+      width: 100%;
+      justify-content: flex-end;
+      margin-right: 8rem;
+      margin-bottom: 1rem;
+      margin-top: 0;
+      font-size: 1.125rem;
+    }
+
+    @include desktop {
+      width: 100%;
+      justify-content: flex-end;
+      margin-right: 8rem;
+    }
+  }
+
+  &__nav-login-btn {
+    background-color: $primary-black;
+    color: $primary-white;
+    font-family: "Avenir";
+    border: none;
+    padding: 0.3rem;
+    cursor: pointer;
+    width: 20%;
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+
+    &:hover {
+      transform: scale(1.1);
+      font-weight: bold;
+    }
+
+    @include tablet-and-desktop {
+      height: 2.75rem;
+      justify-content: center;
+      // @include tabdesk-body;
+      margin-left: 2rem;
+      font-size: 1.125rem;
+      margin-top: 0.4rem;
+    }
+
+    @include desktop {
+      font-size: 1.125rem;
     }
   }
 }
