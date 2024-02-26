@@ -7,17 +7,14 @@ const MemoryContext = createContext();
 
 export const MemoryContextProvider = ({ children }) => {
   const [memories, setMemories] = useState([]);
-  // const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const fetchMemories = async () => {
     try {
       const response = await axios.get(
         `${REACT_APP_SERVER_URL}/api/v1/memories/`
       );
-      console.log(response);
 
       setMemories(response.data.data.memories);
-      console.log(response.data.data.memories);
     } catch (error) {
       console.log(error);
     }

@@ -74,7 +74,6 @@
     @include tablet-and-desktop {
       width: auto;
       margin-right: 3rem;
-      //padding-bottom: 1.5rem;
       @include tabdesk-body;
       color: $primary-white;
     }

@@ -21,15 +21,13 @@
     border-radius: 0.625rem;
     box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.3);
     width: 80%;
-    max-width: 20rem; // Mobile
+    max-width: 20rem;
     position: relative;
 
-    // Tablet
     @include tablet-and-desktop {
       max-width: 500px;
     }
 
-    // Desktop
     @include desktop {
       max-width: 800px;
     }
@@ -37,7 +35,7 @@
 
   &__img-wrap {
     width: 100%;
-    padding-top: 75%; // For a square image
+    padding-top: 75%;
     position: relative;
   }
 

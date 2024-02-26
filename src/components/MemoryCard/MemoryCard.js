@@ -10,7 +10,6 @@ const MemoryCard = ({ memory, onDelete, onUpdate, onClick, onCardClick }) => {
   console.log(memory);
   console.log(memory.image);
   console.log(userId);
-  // console.log(onUpdate);
 
   console.log(String(memory.users_id), userId);
 
@@ -32,7 +31,7 @@ const MemoryCard = ({ memory, onDelete, onUpdate, onClick, onCardClick }) => {
 
   const handleMemoryUpdated = (updatedMemory) => {
     onUpdate(memory.id, updatedMemory);
-    setIsModalOpen(false); // Close the modal
+    setIsModalOpen(false);
   };
 
   function getTimeAgo(timestamp) {
@@ -60,13 +59,6 @@ const MemoryCard = ({ memory, onDelete, onUpdate, onClick, onCardClick }) => {
 
       {String(memory.users_id) === userId && (
         <>
-          {/* <button onClick={handleOpenModal}>Update</button>
-          <UpdateMemoryModal
-            isOpen={isModalOpen}
-            onClose={handleCloseModal}
-            onMemoryUpdated={handleMemoryUpdated}
-            memory={memory}
-          /> */}
           <div className="memory-card__timeago-deletebtn-wrap">
             <div className="memory-card__timeago-wrap">
               <p className="memory-card__timeago">
