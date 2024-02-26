@@ -1,35 +1,16 @@
-import e from "express";
 import "./MemoryCardModal.scss";
-import { useEffect, useRef } from "react";
 
 const MemoryCardModal = ({ memory, onClose }) => {
-  console.log(onClose);
-  const isMounted = useRef(true);
-
-  // useEffect(() => {
-  //   return () => {
-  //     isMounted.current = false;
-  //   };
-  // }, []);
-
   const handleClose = (event) => {
     event.stopPropagation();
-    console.log("Close button clicked");
-    if (isMounted.current && onClose) {
-      console.log("Calling onClose function");
+    if (onClose) {
       onClose();
-    }
-  };
-
-  const handleBackdropClick = (event) => {
-    if (event.target === event.currentTarget) {
-      handleClose();
     }
   };
 
   if (!memory) return null;
   return (
-    <div className="modal" onClick={handleBackdropClick}>
+    <div className="modal">
       <div className="modal__content">
         <div className="modal__img-wrap">
           <img className="modal__img" src={memory.image} alt="memory" />

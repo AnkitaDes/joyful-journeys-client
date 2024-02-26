@@ -1,17 +1,18 @@
+import "./UserProfilePage.scss";
 import { useEffect, useState } from "react";
-// import { useUser } from "../../context/UserContextProvider";
 import axios from "axios";
 import MemoryCard from "../../components/MemoryCard/MemoryCard";
 import CreateMemoryModal from "../../components/CreateMemoryModal/CreatMemoryModal";
+import MemoryCardModal from "../../components/MemoryCardModal/MemoryCardModal";
 import UpdateMemoryModal from "../../components/UpdateMemoryModal/UpdateMemoryModal";
-import { useMemory } from "../../context/MemoryContextProvider";
-import "./UserProfilePage.scss";
+// import { useMemory } from "../../context/MemoryContextProvider";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const UserProfile = () => {
   const [memories, setMemories] = useState([]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isMemoryCardModalOpen, setIsMemoryCardModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [selectedMemory, setSelectedMemory] = useState(null);
 
@@ -41,6 +42,16 @@ const UserProfile = () => {
 
   const handleCloseCreateModal = () => {
     setIsCreateModalOpen(false);
+  };
+
+  const handleOpenMemoryCardModal = (memory) => {
+    setSelectedMemory(memory);
+    setIsMemoryCardModalOpen(true);
+  };
+
+  const handleCloseMemoryCardModal = () => {
+    setSelectedMemory(null);
+    setIsMemoryCardModalOpen(false);
   };
 
   const handleOpenUpdateModal = (memory) => {
@@ -122,6 +133,12 @@ const UserProfile = () => {
         onMemoryUpdated={handleMemoryUpdated}
         memory={selectedMemory}
       />
+
+      <MemoryCardModal
+        isOpen={isMemoryCardModalOpen}
+        onClose={handleCloseMemoryCardModal}
+        memory={selectedMemory}
+      />
       <div className="user-profile__card-wrap">
         {memories.map((memory) => (
           <MemoryCard
@@ -130,6 +147,7 @@ const UserProfile = () => {
             memory={memory}
             onDelete={deleteMemory}
             onUpdate={handleOpenUpdateModal}
+            onCardClick={handleOpenMemoryCardModal}
             userId={userId}
           />
         ))}

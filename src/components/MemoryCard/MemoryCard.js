@@ -4,7 +4,7 @@ import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import deleteIcon from "../../assets/icons/delete-button-svgrepo-com.svg";
 
-const MemoryCard = ({ memory, onDelete, onUpdate, onClick }) => {
+const MemoryCard = ({ memory, onDelete, onUpdate, onClick, onCardClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const userId = localStorage.getItem("userId");
   console.log(memory);
@@ -14,7 +14,9 @@ const MemoryCard = ({ memory, onDelete, onUpdate, onClick }) => {
 
   console.log(String(memory.users_id), userId);
 
-  const handleDelete = async () => {
+  const handleDelete = async (event) => {
+    event.stopPropagation();
+
     if (String(memory.users_id) === userId) {
       onDelete(memory.id);
     }
@@ -38,8 +40,13 @@ const MemoryCard = ({ memory, onDelete, onUpdate, onClick }) => {
     return formatDistanceToNow(date, { addSuffix: true });
   }
 
+  const handleCardClick = () => {
+    if (onClick) onClick();
+    if (onCardClick) onCardClick(memory);
+  };
+
   return (
-    <section className="memory-card" onClick={onClick}>
+    <section className="memory-card" onClick={handleCardClick}>
       <div className="memory-card__image-wrap">
         <img
           className="memory-card__image"
