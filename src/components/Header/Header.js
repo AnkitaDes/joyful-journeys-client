@@ -26,27 +26,30 @@ const Header = () => {
         {user ? (
           <>
             <ul className="header__nav-list">
-              <li className="header__nav-item">
-                <Link className="header__nav-item-link" to="/">
-                  Home
-                </Link>
-              </li>
+              <div className="header__nav-home-memories-wrap">
+                <li className="header__nav-item">
+                  <Link className="header__nav-item-link" to="/">
+                    Home
+                  </Link>
+                </li>
+
+                <li className="header__nav-item">
+                  <Link className="header__nav-item-link" to="/profile">
+                    Memories
+                  </Link>
+                </li>
+              </div>
 
               <li className="header__nav-item">
-                <Link className="header__nav-item-link" to="/profile">
-                  Memories
-                </Link>
-              </li>
-              <div className="header__nav-btn-wrap">
-                <li className="header__nav-item">
+                <div className="header__nav-btn-wrap">
                   <button
                     className="header__nav-logout-btn"
                     onClick={handleLogOut}
                   >
                     Logout
                   </button>
-                </li>
-              </div>
+                </div>
+              </li>
             </ul>
           </>
         ) : (

@@ -5,7 +5,6 @@ import MemoryCard from "../../components/MemoryCard/MemoryCard";
 import CreateMemoryModal from "../../components/CreateMemoryModal/CreatMemoryModal";
 import MemoryCardModal from "../../components/MemoryCardModal/MemoryCardModal";
 import UpdateMemoryModal from "../../components/UpdateMemoryModal/UpdateMemoryModal";
-// import { useMemory } from "../../context/MemoryContextProvider";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -15,9 +14,6 @@ const UserProfile = () => {
   const [isMemoryCardModalOpen, setIsMemoryCardModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [selectedMemory, setSelectedMemory] = useState(null);
-
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [newMemoryAdded, setNewMemoryAdded] = useState(false);
 
   const userId = localStorage.getItem("userId");
   console.log(userId);
@@ -65,8 +61,8 @@ const UserProfile = () => {
   };
 
   const handleMemoryCreated = () => {
-    fetchUserMemories(); // Refresh the memories when a new one is created
-    setIsCreateModalOpen(false); // Close the modal
+    fetchUserMemories();
+    setIsCreateModalOpen(false);
   };
 
   const handleMemoryUpdated = async (updatedMemory) => {
@@ -78,8 +74,8 @@ const UserProfile = () => {
 
       console.log(response.data.data.memory);
 
-      fetchUserMemories(); // Refresh the memories after one is updated
-      setIsUpdateModalOpen(false); // Close the modal
+      fetchUserMemories();
+      setIsUpdateModalOpen(false);
     } catch (error) {
       console.error(error);
     }
@@ -103,7 +99,7 @@ const UserProfile = () => {
     if (confirmDelete) {
       try {
         await axios.delete(`${REACT_APP_SERVER_URL}/api/v1/memories/${id}`);
-        fetchUserMemories(); // Refresh the memories after one is deleted
+        fetchUserMemories();
       } catch (error) {
         console.error(error);
       }
@@ -112,7 +108,6 @@ const UserProfile = () => {
 
   return (
     <main className="user-profile">
-      {/* <h1>User Profile</h1> */}
       <div className="user-profile__create-memory-btn-wrap">
         <button
           className="user-profile__create-memory-btn"

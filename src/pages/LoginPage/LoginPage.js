@@ -39,7 +39,6 @@ const LoginPage = () => {
               required
             />
           </div>
-
           <div className="login__button-wrap">
             <button className="login__button" type="submit">
               Login

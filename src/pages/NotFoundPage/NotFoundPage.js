@@ -1,7 +1,10 @@
+import "./NotFoundPage.scss";
 const NotFoundPage = () => {
   return (
-    <section>
-      <h1>Page not found</h1>
+    <section className="not-found">
+      <div className="not-found__title-wrap">
+        <h1 className="not-found__title">Page not found</h1>
+      </div>
     </section>
   );
 };

@@ -23,14 +23,6 @@ export const MemoryContextProvider = ({ children }) => {
     }
   };
 
-  // const handleOpenCreateModal = () => {
-  //   setIsCreateModalOpen(true);
-  // };
-
-  // const handleCloseCreateModal = () => {
-  //   setIsCreateModalOpen(false);
-  // };
-
   useEffect(() => {
     fetchMemories();
   }, []);

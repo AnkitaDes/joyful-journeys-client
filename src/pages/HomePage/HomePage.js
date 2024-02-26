@@ -14,8 +14,8 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const handleMemoryCreated = () => {
-    setCreateMemoryModalOpen(false); // Close the modal
-    navigate("/profile"); // Navigate to UserProfile page
+    setCreateMemoryModalOpen(false);
+    navigate("/profile");
   };
 
   const handleOpenMemoryModal = (memory) => {

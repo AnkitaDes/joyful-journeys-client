@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Project Title
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Joyful Journeys
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+Joyful Journeys is a heartwarming app designed for parents and families to share and cherish the beautiful moments in the development journey of small babies. Capture the joy, growth, and adorable milestones of your little ones through this delightful platform.
 
-### `npm start`
+### Problem
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In the early stages of a child's life, capturing and preserving precious moments can be challenging. Joyful Journeys addresses this by providing a dedicated space for parents to share images and stories of their small babies' development journey, creating a digital memory lane.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### User Profile
 
-### `npm test`
+Joyful Journeys is tailored for parents and families who want to document and share the joyous moments of their small babies. Users can upload images, add descriptions, and connect with friends and family who would appreciate the beauty of early childhood development while being apart.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Features
 
-### `npm run build`
+Baby Snapshots: Share adorable images of your small baby's daily life and milestones.
+Development Milestones: Document and celebrate key development milestones, from the first smile to the first steps.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Implementation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Frontend: React.js
+Styling: SCSS or styled-components
 
-### `npm run eject`
+### APIs
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+No external APIs are used in the initial version.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Sitemap
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Home
+Memories
+Create Memories
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Mockups
 
-## Learn More
+Provide visuals of your app's screens. You can use tools like Figma or pictures of hand-drawn sketches.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Data
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Describe your data and the relationships between them. You can show this visually using diagrams, or write it out.
 
-### Code Splitting
+### Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+GET /users: Retrieve baby profiles
+POST /babies: Add a new baby profile
+POST /:babyId/:MemoryId: Add a new milestone for a baby
 
-### Analyzing the Bundle Size
+DELETE /:babyId/:MemoryId: Delete a memory for a baby
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Auth
 
-### Making a Progressive Web App
+Authentication will be implemented using JWT. Users will need to log in to create memories, and their profiles will be linked to their accounts.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Roadmap
 
-### Advanced Configuration
+Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation. Think about what you can reasonably complete before the due date. The more detail you provide, the easier it will be to build.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Nice-to-haves
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Update the memory
+Interactive Timeline: Visualize your baby's journey through an interactive timeline, creating a beautiful narrative of their growth.
+Parent Community: Connect with other parents, share parenting tips, and celebrate the joys and challenges of raising small babies together.
