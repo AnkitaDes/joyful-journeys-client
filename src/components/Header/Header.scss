@@ -63,7 +63,7 @@
     text-align: center;
     padding: 1rem 0;
     position: relative;
-    @include mobile-body;
+    font-size: 1rem;
     color: $primary-white;
 
     &:hover {
@@ -74,7 +74,7 @@
     @include tablet-and-desktop {
       width: auto;
       margin-right: 3rem;
-      @include tabdesk-body;
+      font-size: 1rem;
       color: $primary-white;
     }
 
@@ -87,8 +87,8 @@
   &__nav-home-memories-wrap {
     padding-left: 2rem;
     display: flex;
-    justify-content: space-between;
-    gap: 4rem;
+    justify-content: center;
+    gap: 2.8rem;
 
     @include tablet-and-desktop {
       display: flex;
@@ -114,6 +114,7 @@
     text-align: center;
     margin-top: -0.4rem;
     padding-right: 2rem;
+    font-size: 1rem;
 
     &:hover {
       transform: scale(1.1);

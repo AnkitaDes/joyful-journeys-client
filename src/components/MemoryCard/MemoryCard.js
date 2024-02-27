@@ -46,36 +46,39 @@ const MemoryCard = ({ memory, onDelete, onUpdate, onClick, onCardClick }) => {
 
   return (
     <section className="memory-card" onClick={handleCardClick}>
-      <div className="memory-card__image-wrap">
-        <img
-          className="memory-card__image"
-          src={memory.image}
-          alt="baby image"
-        />
-      </div>
-      <div className="memory-card__description-wrap">
-        <p className="memory-card__description">{memory.description}</p>
-      </div>
-
-      {String(memory.users_id) === userId && (
-        <>
-          <div className="memory-card__timeago-deletebtn-wrap">
-            <div className="memory-card__timeago-wrap">
-              <p className="memory-card__timeago">
-                {getTimeAgo(memory.created_at)}
-              </p>
-            </div>
-            <div className="memory-card__delete-btn-wrap">
-              <img
-                onClick={handleDelete}
-                className="memory-card__delete-btn"
-                src={deleteIcon}
-                alt="delete-button"
-              />
-            </div>
+      <div className="memory-card__container">
+        <div className="memory-card__container">
+          <div className="memory-card__image-wrap">
+            <img
+              className="memory-card__image"
+              src={memory.image}
+              alt="baby image"
+            />
           </div>
-        </>
-      )}
+          <div className="memory-card__description-wrap">
+            <p className="memory-card__description">{memory.description}</p>
+          </div>
+          {String(memory.users_id) === userId && (
+            <>
+              <div className="memory-card__timeago-deletebtn-wrap">
+                <div className="memory-card__timeago-wrap">
+                  <p className="memory-card__timeago">
+                    {getTimeAgo(memory.created_at)}
+                  </p>
+                </div>
+                <div className="memory-card__delete-btn-wrap">
+                  <img
+                    onClick={handleDelete}
+                    className="memory-card__delete-btn"
+                    src={deleteIcon}
+                    alt="delete-button"
+                  />
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </section>
   );
 };

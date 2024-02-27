@@ -5,6 +5,8 @@ import MemoryCard from "../../components/MemoryCard/MemoryCard";
 import CreateMemoryModal from "../../components/CreateMemoryModal/CreatMemoryModal";
 import MemoryCardModal from "../../components/MemoryCardModal/MemoryCardModal";
 import UpdateMemoryModal from "../../components/UpdateMemoryModal/UpdateMemoryModal";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -89,21 +91,58 @@ const UserProfile = () => {
     console.log(selectedMemory);
   }, [selectedMemory]);
 
+  // const deleteMemory = async (id) => {
+  //   const confirmDelete = window.confirm(
+  //     "Are you sure you want to delete this memory?"
+  //   );
+
+  //   if (!confirmDelete) return;
+
+  //   if (confirmDelete) {
+  //     try {
+  //       await axios.delete(`${REACT_APP_SERVER_URL}/api/v1/memories/${id}`);
+  //       fetchUserMemories();
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  // };
+
   const deleteMemory = async (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this memory?"
+    const confirmDelete = toast.warn(
+      "Are you sure you want to delete this memory?",
+      {
+        position: "top-center",
+        autoClose: false,
+        closeOnClick: false,
+        draggable: false,
+        toastId: "confirmDelete",
+        onClose: () => toast.dismiss("confirmDelete"),
+        action: [
+          {
+            text: "Yes",
+            onClick: async () => {
+              try {
+                await axios.delete(
+                  `${REACT_APP_SERVER_URL}/api/v1/memories/${id}`
+                );
+                fetchUserMemories();
+                toast.success("Memory deleted successfully"); // Display success toast
+              } catch (error) {
+                console.error(error);
+                toast.error("Error deleting memory"); // Display error toast
+              }
+            },
+          },
+          {
+            text: "No",
+            onClick: () => toast.dismiss("confirmDelete"),
+          },
+        ],
+      }
     );
 
     if (!confirmDelete) return;
-
-    if (confirmDelete) {
-      try {
-        await axios.delete(`${REACT_APP_SERVER_URL}/api/v1/memories/${id}`);
-        fetchUserMemories();
-      } catch (error) {
-        console.error(error);
-      }
-    }
   };
 
   return (
