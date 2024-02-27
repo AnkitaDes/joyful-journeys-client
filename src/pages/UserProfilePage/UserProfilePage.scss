@@ -4,6 +4,8 @@
 @use "../../styles/partials/typography" as *;
 
 .user-profile {
+  background-color: $secondary-mercury;
+
   &__create-memory-btn-wrap {
     display: flex;
     justify-content: center;

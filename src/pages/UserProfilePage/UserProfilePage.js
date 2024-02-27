@@ -5,8 +5,6 @@ import MemoryCard from "../../components/MemoryCard/MemoryCard";
 import CreateMemoryModal from "../../components/CreateMemoryModal/CreatMemoryModal";
 import MemoryCardModal from "../../components/MemoryCardModal/MemoryCardModal";
 import UpdateMemoryModal from "../../components/UpdateMemoryModal/UpdateMemoryModal";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 

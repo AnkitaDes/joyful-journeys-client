@@ -4,6 +4,8 @@
 @use "../../styles/partials/typography" as *;
 
 .home {
+  background-color: $secondary-mercury;
+
   &__create-memory-btn-wrap {
     display: flex;
     justify-content: center;
@@ -28,15 +30,16 @@
     border-radius: 0.3rem;
     cursor: pointer;
     width: 80%;
+    font-size: 1rem;
 
     @include tablet-and-desktop {
-      width: 40%;
+      width: 30%;
       height: 2.75rem;
       justify-content: center;
     }
 
     @include desktop {
-      width: 30%;
+      width: 25%;
     }
 
     &:hover {
