@@ -2,7 +2,7 @@ import "./MemoryCard.scss";
 import UpdateMemoryModal from "../UpdateMemoryModal/UpdateMemoryModal";
 import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
-import deleteIcon from "../../assets/icons/delete-button-svgrepo-com.svg";
+import deleteIcon from "../../assets/icons/186389_delete_remove_icon.svg";
 
 const MemoryCard = ({ memory, onDelete, onUpdate, onClick, onCardClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -69,6 +69,7 @@
     &:hover {
       transform: scale(1.1);
       font-weight: bold;
+      text-decoration: underline;
     }
 
     @include tablet-and-desktop {
